@@ -1,0 +1,32 @@
+development:
+    database:
+        driver: mysql
+        user: root
+        password: root
+        name: hoge
+    log:
+        file: /aaa/bbb/go_sample.log
+        maxAge: 1
+        maxBackup: 3
+
+staging:
+    database:
+        driver: mysql
+        user: root
+        password: root
+        name: hoge
+    log:
+        file: /aaa/bbb/go_sample.log
+        maxAge: 1
+        maxBackup: 3
+
+production:
+    database:
+        driver: mysql
+        user: root
+        password: root
+        name: hoge
+    log:
+        file: /aaa/bbb/go_sample.log
+        maxAge: 1
+        maxBackup: 3
