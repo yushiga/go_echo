@@ -33,9 +33,8 @@ type Database struct {
 ログ設定
 */
 type Logger struct {
-	File      string `yaml:"file"`
-	MaxAge    int    `yaml:"maxAge"`
-	MaxBackup int    `yaml:"maxBackup"`
+	MaxAge    int `yaml:"maxAge"`
+	MaxBackup int `yaml:"maxBackup"`
 }
 
 /*

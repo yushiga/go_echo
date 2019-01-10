@@ -11,7 +11,11 @@ encoderConfig:
     timeEncoder: "iso8601"
     durationEncoder: "string"
     callerEncoder: "short"
+disableStacktrace: false
+disableCaller: false
 outputPaths:
+    - "stdout"
     - "/aaa/bbb/go_sample.log"
 errorOutputPaths:
+    - "stderr"
     - "/aaa/bbb/go_sample.log"

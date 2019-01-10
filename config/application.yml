@@ -5,7 +5,6 @@ development:
         password: root
         name: hoge
     log:
-        file: /aaa/bbb/go_sample.log
         maxAge: 1
         maxBackup: 3
 
@@ -16,7 +15,6 @@ staging:
         password: root
         name: hoge
     log:
-        file: /aaa/bbb/go_sample.log
         maxAge: 1
         maxBackup: 3
 
@@ -27,6 +25,5 @@ production:
         password: root
         name: hoge
     log:
-        file: /aaa/bbb/go_sample.log
         maxAge: 1
         maxBackup: 3

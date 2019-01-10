@@ -27,13 +27,15 @@ func Setup() {
 	enc := zapcore.NewJSONEncoder(zapconf.EncoderConfig)
 	sink := zapcore.AddSync(
 		&lumberjack.Logger{
-			Filename:   config.Config.Logger.File,
+			Filename:   zapconf.OutputPaths[1],
 			MaxAge:     config.Config.Logger.MaxAge, //days
 			MaxBackups: config.Config.Logger.MaxBackup,
 		},
 	)
 	ZapLog = zap.New(
 		zapcore.NewCore(enc, sink, zapconf.Level),
+		zap.AddCaller(),
+		zap.AddStacktrace(zapcore.ErrorLevel),
 	)
 	defer ZapLog.Sync()
 }
