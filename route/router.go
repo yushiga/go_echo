@@ -1,7 +1,7 @@
 package route
 
 import (
-	"github.com/hmhr/go_sample/controllers"
+	"github.com/hmhr/go_echo/controllers"
 	"github.com/labstack/echo"
 )
 

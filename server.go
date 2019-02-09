@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/hmhr/go_sample/config"
-	"github.com/hmhr/go_sample/db"
-	"github.com/hmhr/go_sample/logger"
-	"github.com/hmhr/go_sample/route"
+	"github.com/hmhr/go_echo/config"
+	"github.com/hmhr/go_echo/db"
+	"github.com/hmhr/go_echo/logger"
+	"github.com/hmhr/go_echo/route"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
