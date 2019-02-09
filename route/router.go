@@ -16,16 +16,19 @@ func Init() *echo.Echo {
 
 	{
 		// 全件取得
-		// curl -X GET http://localhost:1323/sample_echo/users
-		api.GET("/users", controllers.FindUsers())
+		// curl -X GET http://localhost:1323/sample_echo/user
+		api.GET("/user", controllers.FindUsers())
 		// id検索
-		// curl -X GET http://localhost:1323/sample_echo/users/1
-		api.GET("/users/:id", controllers.GetUser())
+		// curl -X GET http://localhost:1323/sample_echo/user/1
+		api.GET("/user/:id", controllers.GetUser())
 		// 登録
-		// curl -X POST http://localhost:1323/sample_echo/users -H 'Content-Type: application/json' -d '{"name":"taro", "user_id":"test_id"}'
-		api.POST("/users", controllers.AddUser())
+		// curl -X POST http://localhost:1323/sample_echo/user -H 'Content-Type: application/json' -d '{"name":"taro", "user_id":"test_id"}'
+		api.POST("/user", controllers.AddUser())
 		// 更新
-		//api.
+		// curl -X PUT http://localhost:1323/sample_echo/user -H 'Content-Type: application/json' -d '{"id":1, "name":"aaaaa"}'
+		api.PUT("/user", controllers.UpdateUser())
+		// 削除
+		//api.DELETE("/user/:id", controllers.DeleteUser())
 	}
 
 	return e
