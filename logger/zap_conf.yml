@@ -19,3 +19,4 @@ outputPaths:
 errorOutputPaths:
     - "stderr"
     - "/aaa/bbb/go_sample.log"
+

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/hmhr/go_echo/config"
-	"github.com/hmhr/go_echo/db"
-	"github.com/hmhr/go_echo/logger"
-	"github.com/hmhr/go_echo/route"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/yushiga/go_echo/config"
+	"github.com/yushiga/go_echo/db"
+	"github.com/yushiga/go_echo/logger"
+	"github.com/yushiga/go_echo/route"
 
 	"flag"
 )

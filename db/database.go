@@ -5,7 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 
-	"github.com/hmhr/go_echo/config"
+	"github.com/yushiga/go_echo/config"
 )
 
 var db *gorm.DB

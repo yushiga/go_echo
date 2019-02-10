@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/hmhr/go_echo/config"
+	"github.com/yushiga/go_echo/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"

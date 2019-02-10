@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/hmhr/go_echo/db"
-	"github.com/hmhr/go_echo/logger"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+	"github.com/yushiga/go_echo/db"
+	"github.com/yushiga/go_echo/logger"
 	"gopkg.in/go-playground/validator.v9"
 	"net/http"
 	"strconv"
