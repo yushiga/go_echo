@@ -17,6 +17,12 @@ main関数
 func main() {
 	// 実行時引数から環境設定
 	flag.Parse()
+
+	args := flag.Args()
+	if len(args) == 0 {
+		panic("No Startup Argument")
+	}
+
 	config.SetEnvironment(flag.Args()[0])
 
 	// ログ設定
