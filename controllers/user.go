@@ -1,13 +1,14 @@
 package controllers
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/yushiga/go_echo/db"
 	"github.com/yushiga/go_echo/logger"
 	"gopkg.in/go-playground/validator.v9"
-	"net/http"
-	"strconv"
 )
 
 var dbconn *gorm.DB
