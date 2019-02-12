@@ -24,6 +24,7 @@ func Init() {
 全件検索
 */
 func FindUsers() echo.HandlerFunc {
+	defer dbconn.Close()
 	return func(c echo.Context) error {
 		logger.ZapLog.Info("===START FindUsers===")
 		users := []db.User{}
@@ -36,6 +37,7 @@ func FindUsers() echo.HandlerFunc {
 指定ID検索
 */
 func GetUser() echo.HandlerFunc {
+	defer dbconn.Close()
 	return func(c echo.Context) error {
 		logger.ZapLog.Info("===START GetUsers===")
 		user := db.User{}
@@ -50,15 +52,16 @@ func GetUser() echo.HandlerFunc {
 INSERT処理
 */
 func AddUser() echo.HandlerFunc {
+	defer dbconn.Close()
 	return func(c echo.Context) (err error) {
 		logger.ZapLog.Info("===START AddUser===")
-		v := validator.New()
 		user := new(db.User)
 		if err = c.Bind(user); err != nil {
 			logger.ZapLog.Error("Bind Error")
 			return c.JSON(http.StatusBadRequest, user)
 		}
 
+		v := validator.New()
 		if err = v.Struct(user); err != nil {
 			logger.ZapLog.Error("Validation Error")
 			return c.JSON(http.StatusBadRequest, err.Error())
@@ -74,35 +77,25 @@ func AddUser() echo.HandlerFunc {
 UPDATE処理
 */
 func UpdateUser() echo.HandlerFunc {
+	defer dbconn.Close()
 	return func(c echo.Context) (err error) {
 		logger.ZapLog.Info("===START UpdateUser===")
-		v := validator.New()
 		user := new(db.User)
 		if err = c.Bind(user); err != nil {
 			logger.ZapLog.Error("Bind Error")
 			return c.JSON(http.StatusBadRequest, user)
 		}
 
+		v := validator.New()
 		if err = v.Struct(user); err != nil {
 			logger.ZapLog.Error("Validation Error")
 			return c.JSON(http.StatusBadRequest, err.Error())
 		}
 
-		search := SearchUser(user.ID)
-		user.CreatedAt = search.CreatedAt
-		dbconn.Save(&user)
-		//dbconn.Model(&user).Update("user_id", "gyagya")
+		dbconn.Model(&user).Updates(&user)
 
 		return c.JSON(http.StatusOK, user)
 	}
-}
-
-func SearchUser(id uint) db.User {
-	logger.ZapLog.Info("===START SearchUsers===")
-	user := db.User{}
-	user.ID = id
-	dbconn.First(&user)
-	return user
 }
 
 /*

@@ -1,12 +1,13 @@
 package logger
 
 import (
+	"io/ioutil"
+
 	"github.com/yushiga/go_echo/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 	yaml "gopkg.in/yaml.v2"
-	"io/ioutil"
 )
 
 var ZapLog *zap.Logger
