@@ -2,8 +2,9 @@ package config
 
 import (
 	"fmt"
-	yaml "gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	yaml "gopkg.in/yaml.v2"
 )
 
 var Config Conf
