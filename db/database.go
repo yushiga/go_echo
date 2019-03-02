@@ -2,6 +2,8 @@ package db
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -21,6 +23,15 @@ func Init() {
 	db, err = gorm.Open(driver, user+":"+password+"@/"+dbname+"?charset=utf8&parseTime=True&loc=Local")
 
 	db.AutoMigrate(&User{})
+
+	// クエリログ
+	file, err := os.OpenFile("/aaa/bb/query.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		panic(err)
+	}
+	log.SetOutput(file)
+	db.LogMode(true)
+	db.SetLogger(log.New(file, "", 0))
 
 	if err != nil {
 		panic(fmt.Sprintf("[Error]: %s", err))

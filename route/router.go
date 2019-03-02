@@ -15,6 +15,9 @@ func Init() *echo.Echo {
 	api := e.Group("/sample_echo")
 
 	{
+		// サンプルデータ登録
+		// curl -X POST http://localhost:1323/sample_echo/sample -H 'Content-Type: application/json'
+		api.POST("/sample", controllers.CreateSampleData())
 		// 全件取得
 		// curl -X GET http://localhost:1323/sample_echo/user
 		api.GET("/user", controllers.FindUsers())

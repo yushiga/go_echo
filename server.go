@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	args := flag.Args()
-	if len(args) == 0 {
+	if len(args) != 1 {
 		panic("No Startup Argument")
 	}
 

@@ -3,10 +3,12 @@ package controllers
 import (
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/yushiga/go_echo/db"
+	"github.com/yushiga/go_echo/form"
 	"github.com/yushiga/go_echo/logger"
 	"gopkg.in/go-playground/validator.v9"
 )
@@ -21,10 +23,26 @@ func Init() {
 }
 
 /*
+サンプルデータ作成
+*/
+func CreateSampleData() echo.HandlerFunc {
+	return func(c echo.Context) (err error) {
+		logger.ZapLog.Info("===START CreateSampleData===")
+		user := new(db.User)
+		user.UserID = "sample"
+		user.Name = "sample"
+		user.Remark = "sample"
+		user.CreatedAt = time.Now()
+		dbconn.Create(&user)
+
+		return c.JSON(http.StatusOK, user)
+	}
+}
+
+/*
 全件検索
 */
 func FindUsers() echo.HandlerFunc {
-	defer dbconn.Close()
 	return func(c echo.Context) error {
 		logger.ZapLog.Info("===START FindUsers===")
 		users := []db.User{}
@@ -37,7 +55,6 @@ func FindUsers() echo.HandlerFunc {
 指定ID検索
 */
 func GetUser() echo.HandlerFunc {
-	defer dbconn.Close()
 	return func(c echo.Context) error {
 		logger.ZapLog.Info("===START GetUsers===")
 		user := db.User{}
@@ -52,7 +69,6 @@ func GetUser() echo.HandlerFunc {
 INSERT処理
 */
 func AddUser() echo.HandlerFunc {
-	defer dbconn.Close()
 	return func(c echo.Context) (err error) {
 		logger.ZapLog.Info("===START AddUser===")
 		user := new(db.User)
@@ -66,8 +82,7 @@ func AddUser() echo.HandlerFunc {
 			logger.ZapLog.Error("Validation Error")
 			return c.JSON(http.StatusBadRequest, err.Error())
 		}
-
-		dbconn.Create(user)
+		dbconn.Create(&user)
 
 		return c.JSON(http.StatusOK, user)
 	}
@@ -77,10 +92,9 @@ func AddUser() echo.HandlerFunc {
 UPDATE処理
 */
 func UpdateUser() echo.HandlerFunc {
-	defer dbconn.Close()
 	return func(c echo.Context) (err error) {
 		logger.ZapLog.Info("===START UpdateUser===")
-		user := new(db.User)
+		user := new(form.User)
 		if err = c.Bind(user); err != nil {
 			logger.ZapLog.Error("Bind Error")
 			return c.JSON(http.StatusBadRequest, user)
