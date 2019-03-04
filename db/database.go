@@ -20,17 +20,19 @@ func Init() {
 	user := config.Config.Database.User
 	password := config.Config.Database.Password
 	dbname := config.Config.Database.Name
+	logPath := config.Config.Database.LogPath
+	logMode := config.Config.Database.LogMode
 	db, err = gorm.Open(driver, user+":"+password+"@/"+dbname+"?charset=utf8&parseTime=True&loc=Local")
 
 	db.AutoMigrate(&User{})
 
 	// クエリログ
-	file, err := os.OpenFile("/aaa/bb/query.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	file, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		panic(err)
 	}
 	log.SetOutput(file)
-	db.LogMode(true)
+	db.LogMode(logMode)
 	db.SetLogger(log.New(file, "", 0))
 
 	if err != nil {

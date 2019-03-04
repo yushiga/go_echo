@@ -4,6 +4,8 @@ development:
         user: root
         password: root
         name: hoge
+        logPath: /aaa/bbb/query.log
+        logMode: true
     log:
         maxAge: 1
         maxBackup: 3
@@ -14,6 +16,8 @@ staging:
         user: root
         password: root
         name: hoge
+        logPath: /aaa/bbb/query.log
+        logMode: true
     log:
         maxAge: 1
         maxBackup: 3
@@ -24,6 +28,8 @@ production:
         user: root
         password: root
         name: hoge
+        logPath: /aaa/bbb/query.log
+        logMode: false
     log:
         maxAge: 1
         maxBackup: 3

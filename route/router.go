@@ -30,8 +30,9 @@ func Init() *echo.Echo {
 		// 更新
 		// curl -X PUT http://localhost:1323/sample_echo/user -H 'Content-Type: application/json' -d '{"id":1, "name":"aaaaa"}'
 		api.PUT("/user", controllers.UpdateUser())
-		// 削除
-		//api.DELETE("/user/:id", controllers.DeleteUser())
+		// 削除(type=0：物理削除、type!=0：論理削除)
+		// curl -X DELETE "http://localhost:1323/sample_echo/user?id=1&type=0"
+		api.DELETE("/user", controllers.DeleteUser())
 	}
 
 	return e

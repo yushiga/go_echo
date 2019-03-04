@@ -28,6 +28,8 @@ type Database struct {
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
 	Name     string `yaml:"name"`
+	LogPath  string `yaml:"logPath"`
+	LogMode  bool   `yaml:"logMode"`
 }
 
 /*

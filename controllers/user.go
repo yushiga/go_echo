@@ -116,15 +116,21 @@ func UpdateUser() echo.HandlerFunc {
 DELETE処理
 type: 0=物理削除, 1=論理削除
 */
-//func DeleteUser() echo.HandlerFunc {
-//	return func(c echo.Context) (err error) {
-//		logger.ZapLog.Info("===START DeleteUser===")
-//
-//		if c.Param("type") == "0" {
-//			logger.ZapLog.Info("---DELETE---")
-//		} else {
-//			logger.ZapLog.Info("---SOFT DELETE---")
-//		}
-//		return c.JSON(http.StatusOK, user)
-//	}
-//
+func DeleteUser() echo.HandlerFunc {
+	return func(c echo.Context) (err error) {
+		logger.ZapLog.Info("===START DeleteUser===")
+
+		user := db.User{}
+		parseID, _ := strconv.Atoi(c.QueryParam("id"))
+		user.ID = uint(parseID)
+
+		if c.QueryParam("type") == "0" {
+			logger.ZapLog.Info("---DELETE---")
+			dbconn.Unscoped().Delete(&user)
+		} else {
+			logger.ZapLog.Info("---SOFT DELETE---")
+			dbconn.Delete(&user)
+		}
+		return c.JSON(http.StatusOK, user)
+	}
+}
